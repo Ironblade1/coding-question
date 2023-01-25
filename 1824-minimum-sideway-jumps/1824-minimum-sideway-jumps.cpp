@@ -61,7 +61,35 @@ public:
         }
         return min(dp[2][0], min(dp[1][0]+1, dp[3][0]+1));
     }
+    
 
+    int solveSO(vector<int> &obstacles){
+        vector<int> curr(4,INT_MAX);
+        vector<int> next(4,INT_MAX);
+        
+        next[0]=0;
+        next[1]=0;
+        next[2]=0;
+        next[3]=0;
+        
+        int n = obstacles.size()-1;
+        for(int i=n-1;i>=0;i--){
+            for(int lane =1;lane<=3;lane++){
+                if(obstacles[i+1]!= lane) curr[lane] = next[lane];
+                else{
+                    int ans = 1e9;
+                    for(int j=1;j<=3;j++){
+                        if(lane != j && obstacles[i]!=j){
+                            ans = min(ans, 1+ next[j]);
+                        }
+                    }
+                    curr[lane] = ans;
+                }
+            } 
+            next = curr;
+        }
+        return min(next[2], min(next[1]+1, next[3]+1));
+    }
 
     int minSideJumps(vector<int>& obstacles) {
         // return solve(obstacles,2,0);
@@ -69,6 +97,8 @@ public:
         // vector<vector<int>> dp(4,vector<int>(obstacles.size(),-1));
         // return solveMem(obstacles,2,0,dp);
         
-        return solveTab(obstacles);
+        // return solveTab(obstacles);
+        
+        return solveSO(obstacles);
     }
 };
