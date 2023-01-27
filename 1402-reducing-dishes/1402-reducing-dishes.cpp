@@ -21,6 +21,20 @@ public:
         return dp[index][time] = max(inc,exc);
     }
     
+    int solveTab(vector<int> &sat){
+        int n = sat.size();
+        vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+        
+        for(int index=n-1;index>=0;index--){
+            for(int time =index;time>=0;time--){
+                int inc = sat[index]*(time+1)+ dp[index+1][time+1];
+                int exc = 0 + dp[index+1][time];
+                dp[index][time] = max(inc, exc);
+            }
+        }
+        return dp[0][0];
+    }
+    
     int maxSatisfaction(vector<int>& satisfaction) {
         sort(satisfaction.begin(),satisfaction.end());
         // return solve(satisfaction, 0, 0);
