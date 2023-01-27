@@ -59,6 +59,8 @@ public:
         // vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
         // return solveMem(satisfaction,0,0,dp);
         
-        return solveTab(satisfaction);
+        // return solveTab(satisfaction);
+        
+        return solveSO(satisfaction);
     }
 };
