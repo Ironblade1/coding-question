@@ -35,13 +35,46 @@ public:
         
         for(int i=k-1;i>=1;i--){
             for(int n =1;n<=k/3;n++){
-                int take = slices[i] + dp1[i+2][n-1];
-                int notTake= 0 + dp1[i+1][n];
+                int take = slices[i] + dp2[i+2][n-1];
+                int notTake= 0 + dp2[i+1][n];
                 dp1[i][n] = max(take,notTake);
             }
         }
         int case2 = dp1[1][k/3];
         
+        return max(case1,case2);
+    }
+    
+    int solveSo(vector<int> &slices,int k){
+        vector<int> prev(k+2,0);
+        vector<int> curr(k+2,0);
+        vector<int> next(k+2,0);
+        
+        vector<int> prev2(k+2,0);
+        vector<int> curr2(k+2,0);
+        vector<int> next2(k+2,0);
+        
+        for(int i=k-2;i>=0;i--){
+            for(int n =1;n<=k/3;n++){
+                int take = slices[i] + next[n-1];
+                int notTake= 0 + curr[n];
+                prev[n] = max(take,notTake);
+            }
+            next = curr;
+            curr = prev;
+        }
+        int case1 = curr[k/3];
+        
+        for(int i=k-1;i>=1;i--){
+            for(int n =1;n<=k/3;n++){
+                int take = slices[i] + next2[n-1];
+                int notTake= 0 + curr2[n];
+                prev2[n] = max(take,notTake);
+            }
+            next2 = curr2;
+            curr2 = prev2;
+        }
+        int case2 = curr2[k/3];
         return max(case1,case2);
     }
     
@@ -57,7 +90,9 @@ public:
         // int case2 = solveMem(1,k-1,slices,k/3,dp2);
         // return max(case1,case2);
         
-        return solveTab(slices,k);
+        // return solveTab(slices,k);
+        
+        return solveSo(slices,k);
     }
     
 };
