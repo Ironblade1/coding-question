@@ -14,8 +14,8 @@ public:
     
     bool solve(TreeNode* r1, TreeNode* r2){
         if(!r1 && !r2) return true;
-        if(r1 && !r2) return false;
-        if(!r1 && r2) return false;
+        if(!r1 || !r2) return false;
+        // if(!r1 && r2) return false;
         
         bool left = solve(r1->left,r2->right);
         bool right = solve(r1->right,r2->left);
