@@ -11,21 +11,22 @@
  */
 class Solution {
 public:
+    int index =0;
     void Mapping(vector<int>& inorder,unordered_map<int,int> &mp){
         for(int i=0;i<inorder.size();i++){
             mp[inorder[i]]=i;
         }
     }
     
-    TreeNode* solve(vector<int>& preorder, vector<int>& inorder, int index,int inorderStart,int inorderEnd,int n , unordered_map<int,int>& mp){
+    TreeNode* solve(vector<int>& preorder, vector<int>& inorder,int inorderStart,int inorderEnd,int n , unordered_map<int,int>& mp){
         if(index>=n || inorderStart>inorderEnd) return NULL;
         
         int element = preorder[index++];
         int position = mp[element];
         TreeNode* root = new TreeNode(element);
         
-        root->left = solve(preorder,inorder,index,inorderStart,position-1,n,mp);
-        root->right = solve(preorder,inorder,index+position-inorderStart,position+1,inorderEnd,n,mp);
+        root->left = solve(preorder,inorder,inorderStart,position-1,n,mp);
+        root->right = solve(preorder,inorder,position+1,inorderEnd,n,mp);
         
         return root;
         
@@ -39,7 +40,7 @@ public:
         for(int i=0;i<n;i++){
             cout<<mp[inorder[i]]<<",";
         }
-        TreeNode* ans = solve(preorder,inorder,0,0,n-1,n,mp);
+        TreeNode* ans = solve(preorder,inorder,0,n-1,n,mp);
         return ans;
     }
 };
