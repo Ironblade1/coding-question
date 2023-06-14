@@ -13,13 +13,13 @@ public:
     int numIslands(vector<vector<char>>& grid) {
         int m = grid.size(), n = grid[0].size();
         if(m==0) return 0;
-         int no_island = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    dfs(grid, i, j);
-                    no_island += 1;
-                }
+        int no_island = 0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+               if(grid[i][j]=='1'){
+                   dfs(grid,i,j);
+                   no_island+=1;
+               }
             }
         }
         return no_island;
