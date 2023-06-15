@@ -26,7 +26,7 @@ public:
         for(int i=0;i<numCourses;i++){
             if(!visi[i]){
                 bool isCyclic = dfs(i,mp,visi,st,dfsvisi);
-                if(isCyclic) return res; //empty vector
+                if(isCyclic) return {}; //empty vector
             }  
             
         }
