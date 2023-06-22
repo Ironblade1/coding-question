@@ -71,6 +71,8 @@ public:
         vector<vector<int>> dp(prices.size()+1, vector<int>(3,-1));
         // return solveMem(prices, fee, 0 , 1, dp);
 
-        return solveTab(prices, fee);
+        // return solveTab(prices, fee);
+
+        return solveOpt(prices, fee);
     }
 };
