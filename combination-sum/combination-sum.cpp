@@ -1,25 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
 class Solution {
 public:
-    void solve(int i, int t, vector<int>& c, vector<int>& temp, vector<vector<int>>& ans){
-        if(t==0){
-            ans.push_back(temp);
+
+    void solve(vector<int>& cand, int t,vector<vector<int>> &res, vector<int> &ans,int i){
+
+        if(t==0) {
+            res.push_back(ans);
             return ;
         }
-        if(t<0) return ;
-
-        while(i<c.size() && t-c[i]>=0){
-            temp.push_back(c[i]);
-            solve(i,t-c[i],c,temp,ans);
-            temp.pop_back();
+        while(i<cand.size() && t-cand[i]>=0){
+            ans.push_back(cand[i]);
+            solve(cand,t-cand[i],res,ans,i);
+            
+            ans.pop_back();
             i++;
         }
+        return ;
     }
 
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<int> temp;
-        vector<vector<int>> ans;
         sort(candidates.begin(),candidates.end());
-        solve(0,target,candidates,temp,ans);
-        return ans;
+        vector<vector<int>> res;
+        vector<int> ans;
+        solve(candidates,target,res,ans,0);
+        return res; 
     }
 };
