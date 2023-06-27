@@ -1,16 +1,36 @@
+// Optimized Using: Two Pointer with Extra Space
+  // Time Complexity: O(m+n)
+  // Space Complexity: O(m+n)
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        for(int i=0;i<nums2.size();i++){
-            nums1.push_back(nums2[i]);
+        
+        // Create a single sorted by merging two sorted arrays
+        int n1=nums1.size();
+        int n2=nums2.size();
+        int i=0;
+        int j=0;
+        int lastindex=-1;
+             
+        // Initialize a new array
+           vector<int>v(n1+n2,0);
+        
+        while(i<n1&&j<n2)
+        {
+            if(nums1[i]<=nums2[j])
+                v[++lastindex]=nums1[i++];
+            else
+                v[++lastindex]=nums2[j++];
         }
-        sort(nums1.begin(),nums1.end());
-        double ans ;
-        int n = nums1.size();
-        if(n%2!=0)   ans = nums1[n/2];
-        else{
-             ans = (double)(nums1[n/2]+nums1[n/2-1])/2;
-        }
-        return ans;
+        
+        while(i<n1)
+            v[++lastindex]=nums1[i++];
+        while(j<n2)
+            v[++lastindex]=nums2[j++];
+        
+    // Return the result
+        int n=n1+n2;
+        return n%2?v[n/2]:(v[n/2]+v[n/2-1])/2.0;
+        
     }
 };
