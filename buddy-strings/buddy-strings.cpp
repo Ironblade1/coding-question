@@ -19,7 +19,7 @@ public:
                 swap(s[i],s[ind]);
                 flag = 1;
             }
-            if(flag) break;
+            // if(flag) break;
             i++;
             j++;
         }
