@@ -25,14 +25,29 @@ public:
         vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
 
         for(int i = n-1; i >= 0; i--){
-            for(int j = 0; j <=i; j++){
+            for(int j = 0; j <=i; j++){  
                 int ans1 = triangle[i][j] + dp[i+1][j];
                 int ans2 = triangle[i][j] + dp[i+1][j+1];
                 dp[i][j] = min(ans1, ans2);
             }
         }
-
         return dp[0][0];
+    }
+
+    int solveOS(vector<vector<int>>& triangle){
+        int n = triangle.size();
+        vector<int> next(n+1,0);
+        vector<int> curr(n+1,0);
+
+        for(int i = n-1; i >= 0; i--){
+            for(int j = 0; j <=i; j++){  
+                int ans1 = triangle[i][j] + next[j];
+                int ans2 = triangle[i][j] + next[j+1];
+                curr[j] = min(ans1, ans2);
+            }
+            next = curr;
+        }
+        return next[0];
     }
 
 
@@ -42,6 +57,8 @@ public:
         // vector<vector<int>> dp(triangle.size()+1, vector<int>(n+1,-1));
         // return solveMem(triangle,0,0,dp);
 
-        return solveTab(triangle);
+        // return solveTab(triangle);
+
+        return solveOS(triangle);
     }
 };
