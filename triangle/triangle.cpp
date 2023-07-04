@@ -23,7 +23,7 @@ public:
     int minimumTotal(vector<vector<int>>& triangle) {
         // return solve(triangle, 0, 0);  // recursive
         int n = triangle.size();
-        vector<vector<int>> dp(triangle.size()+1, vector<int>(201,-1));
+        vector<vector<int>> dp(triangle.size()+1, vector<int>(n+1,-1));
         return solveMem(triangle,0,0,dp);
     }
 };
