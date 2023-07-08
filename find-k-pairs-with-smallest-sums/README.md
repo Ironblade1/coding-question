@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums">Find K Pairs with Smallest Sums</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>You are given two integer arrays <code>nums1</code> and <code>nums2</code> sorted in <strong>ascending order</strong> and an integer <code>k</code>.</p>
+<h2><a href="https://leetcode.com/problems/find-k-pairs-with-smallest-sums">Find K Pairs with Smallest Sums</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>You are given two integer arrays <code>nums1</code> and <code>nums2</code> sorted in <strong>non-decreasing&nbsp;order</strong> and an integer <code>k</code>.</p>
 
 <p>Define a pair <code>(u, v)</code> which consists of one element from the first array and one element from the second array.</p>
 
@@ -35,6 +35,6 @@
 <ul>
 	<li><code>1 &lt;= nums1.length, nums2.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>-10<sup>9</sup> &lt;= nums1[i], nums2[i] &lt;= 10<sup>9</sup></code></li>
-	<li><code>nums1</code> and <code>nums2</code> both are sorted in <strong>ascending order</strong>.</li>
+	<li><code>nums1</code> and <code>nums2</code> both are sorted in <strong>non-decreasing order</strong>.</li>
 	<li><code>1 &lt;= k &lt;= 10<sup>4</sup></code></li>
 </ul>
