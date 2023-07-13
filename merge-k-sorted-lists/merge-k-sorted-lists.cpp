@@ -55,12 +55,14 @@ public:
         if(k==0) return NULL;
         if(k==1) return lists[0];
         
-        // return mergeKListsHelper(lists,0,k-1);
-         ListNode* ans = lists[0];
-        for (int i = 1; i < k; i++) {
-            ans = merge(ans, lists[i]);
-        }
-        return ans;
+        return mergeKListsHelper(lists,0,k-1);
+
+
+        //  ListNode* ans = lists[0];
+        // for (int i = 1; i < k; i++) {
+        //     ans = merge(ans, lists[i]);
+        // }
+        // return ans;
 
     }
 };
