@@ -1,9 +1,9 @@
 class Solution {
 public:
     static bool cmp(pair<int,int>& a, pair<int,int>& b){
-        if(a.first == b.first){
-            return a.second > b.second;
-        }
+        // if(a.first == b.first){
+        //     return a.second > b.second;
+        // }
         return a.first < b.first;
     }
 
@@ -15,9 +15,6 @@ public:
 
         sort(proj.begin(),proj.end(),cmp);
 
-        for(auto p:proj){
-            cout<<p.first<<","<<p.second<<endl;
-        }
         priority_queue<int> pq;
         int n = proj.size();
         int i = 0;
