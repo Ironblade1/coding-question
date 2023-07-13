@@ -23,6 +23,7 @@ public:
                 pq.push(proj[i].second);
                 i++;
             }
+            if(pq.empty()) break;
             if(!pq.empty()){
                 w+= pq.top();
                 pq.pop();
