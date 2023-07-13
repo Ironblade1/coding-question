@@ -1,31 +1,34 @@
 class Solution {
 public:
-    bool dfs(int node,unordered_map<int,list<int>>& mp, vector<bool>& visi, vector<bool>& dfsvisi){
-        visi[node] = 1;
-        dfsvisi[node] =1;
-        for(auto nbr:mp[node]){
-            if(!visi[nbr]){
-                dfs(nbr,mp,visi,dfsvisi);
-            }
-            if(visi[nbr] && dfsvisi[nbr]) return true;
+    bool checkCycle(int i, unordered_map<int, vector<int>>& adj, vector<bool>& visited, vector<bool>& dfsVisited) {
+        visited[i] = true;
+        dfsVisited[i] = true;
+
+        for (int neighbor : adj[i]) {
+            if (!visited[neighbor] && checkCycle(neighbor, adj, visited, dfsVisited))
+                return true;
+            else if (dfsVisited[neighbor])
+                return true;
         }
-        dfsvisi[node] = false;
+
+        dfsVisited[i] = false;
         return false;
     }
 
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int,list<int>> mp;
-        for(auto p:prerequisites){
-            mp[p[1]].push_back(p[0]);
+        unordered_map<int, vector<int>> adj;
+        for (const auto& prerequisite : prerequisites) {
+            adj[prerequisite[0]].push_back(prerequisite[1]);
         }
-        vector<bool> visi(numCourses,0);
-        vector<bool> dfsvisi(numCourses,0);
-        for(int i=0;i<numCourses;i++){
-            if(!visi[i]){
-                bool isCyclic = dfs(i,mp,visi,dfsvisi);
-                if(isCyclic) return false;  // thier is cycle present in this graaph thats why all course aren't be completed
-            }
+
+        vector<bool> visited(numCourses, false);
+        vector<bool> dfsVisited(numCourses, false);
+
+        for (int i = 0; i < numCourses; i++) {
+            if (!visited[i] && checkCycle(i, adj, visited, dfsVisited))
+                return false;
         }
+
         return true;
     }
 };
